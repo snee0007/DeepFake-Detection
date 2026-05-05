@@ -102,22 +102,7 @@ python manage.py migrate
 python manage.py runserver
 Open http://localhost:8000 in your browser.
 
-Model Architecture Detail
-Input Frame (224 × 224 × 3)
-        │
-   ResNext-50 CNN
-        │  ← Residual blocks with grouped convolutions
-        │  ← Captures spatial artifacts in fake faces
-        ▼
-  Feature Vector (2048-d) per frame
-        │
-   LSTM (512 hidden units, 2 layers)
-        │  ← Models temporal sequence across N frames
-        │  ← Detects frame-to-frame inconsistencies
-        ▼
-  Fully Connected → Softmax
-        │
-  [REAL, FAKE] + confidence %
+
 Why ResNext over standard ResNet?
 ResNext uses grouped convolutions (cardinality), which improves feature diversity
 without increasing model complexity — important for detecting subtle GAN artifacts.
